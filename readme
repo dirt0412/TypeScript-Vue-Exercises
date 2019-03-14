@@ -1,0 +1,6 @@
+npm run build
+---------------------------
+add to tsconfig.json 
+"lib": ["es5", "es6", "dom"] 
+(use Map etc)
+---------------------------
