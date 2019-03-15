@@ -3,9 +3,25 @@
     <div>
         <div class="greeting">Exercises typescript - calc2</div>
 
-        <button @click="sumAmount">Sum Amount</button>
+        <button @click="calculateTableColors">Calculate table with colors</button>
 
-        <input placeholder="result" type="text" v-model="sumAmountTotal">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20px;"></th>
+        <th style="width:20px;" v-for="(item) in quantitySizeTableArr">{{item}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  v-for="(item) in quantitySizeTableArr" :key="i">
+       <td >{{ item }}</td>  
+        <td style="width:20px;" v-for="(item) in quantitySizeTableArr" :key="j">{{ 'x'}}</td>  
+      
+       <!-- <td>{{ item.amount }}</td>  -->
+      </tr>
+    </tbody>
+  </table>
+
     </div>
 </template>
 
@@ -19,12 +35,24 @@ export default Vue.extend({
   },
   data() {
     return {
-      sumAmountTotal: 0
+      quantitySizeTableArr: new Array(),
+      quantitySizeTable: new Number(),
+      arrayColorsWithCells: [{ hex: "", cell: [0, 0] }]
     };
   },
   methods: {
-    sumAmount() {
-      this.sumAmountTotal = calc2Methods.sumAmount();
+    async calculateTableColors() {
+      //let colors = await calc2Methods.getDataJSON();
+      let quantitySizeTable = 0;
+      this.quantitySizeTableArr = [];
+
+      quantitySizeTable = await calc2Methods.getquantityColumnsRows();
+      for (let i = 1; i <= quantitySizeTable; i++) {
+        this.quantitySizeTableArr.push(i);
+      }
+
+      this.arrayColorsWithCells = await calc2Methods.getHexCells();
+      console.log(this.arrayColorsWithCells);
     }
   },
   computed: {},
@@ -43,5 +71,9 @@ export default Vue.extend({
 <style>
 .greeting {
   font-size: 20px;
+}
+td {
+  text-align: center;
+  vertical-align: middle;
 }
 </style>

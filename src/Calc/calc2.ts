@@ -1,7 +1,6 @@
+import data from '../data/dataColors.json';
+
 class Calc2 {
-    // id: number;
-    // title: String;
-    // amount: number;
 
     dataArray = [
         {
@@ -35,20 +34,38 @@ class Calc2 {
             "amount": 799.9900
         }
     ]
+    colors: [{ color: '', code: { hex: '' }, cell: [0, 0] }];
+    colorsWithCells: [{ hex: '', cell: [0, 0] }];
 
     constructor() {
-        console.log('creating new instance of Calc1');
+        this.colors = [{ color: '', code: { hex: '' }, cell: [0, 0] }];
+        this.colorsWithCells = [{ hex: '', cell: [0, 0] }];
+        console.log('creating new instance of Calc2');
     }
 
-    sumAmount() {
-        let sumTotalAmount: number;
-        sumTotalAmount = 0;
-        this.dataArray.forEach(function (value) {
-            sumTotalAmount = Number(sumTotalAmount.toFixed(4)) + Number(value.amount.toFixed(4))
+    getDataJSON() {
+        this.colors = (<any>data).colors;
+        return this.colors;
+    }
+    getquantityColumnsRows() {
+        this.getDataJSON()
+        let temp = 0;
+        this.colors.forEach(function (color) {
+            temp = temp < color.cell[0] ? color.cell[0] : temp < color.cell[1] ? color.cell[1] : temp
         });
-        return sumTotalAmount;
+        //console.log(this.colors)
+        return temp;
     }
-
+    getHexCells() {
+        let colorsWithCells = [{ hex: '', cell: [0, 0] }];
+        //this.getDataJSON()
+        this.colors.forEach(function (color) {
+            colorsWithCells.push({ hex: color.code.hex, cell: color.cell });
+            //temp = temp < color.cell[0] ? color.cell[0] : temp < color.cell[1] ? color.cell[1] : temp
+        });
+        //this.colorsWithCells = colorsWithCells
+        return colorsWithCells
+    }
 }
 
 // Export a singleton instance in the global namespace

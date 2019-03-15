@@ -1,7 +1,4 @@
 class Calc1 {
-    // id: number;
-    // title: String;
-    // amount: number;
 
     dataArray = [
         {

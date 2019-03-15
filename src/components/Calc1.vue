@@ -40,7 +40,7 @@ export default Vue.extend({
   data() {
     return {
       sumAmountTotal: 0,
-      sumAmountGroupByCountryTotal: new Map(),
+      mapAmountGroupByCountryTotal: new Map(),
       arrayCountryAmount: [{}]
     };
   },
@@ -49,9 +49,9 @@ export default Vue.extend({
       this.sumAmountTotal = calc1Methods.sumAmount();
     },
     sumAmountGroupByCountry() {
-      this.sumAmountGroupByCountryTotal = calc1Methods.sumAmountGroupByCountry();
+      this.mapAmountGroupByCountryTotal = calc1Methods.sumAmountGroupByCountry();
       let arr2 = [{}];
-      this.sumAmountGroupByCountryTotal.forEach(function(key, value) {
+      this.mapAmountGroupByCountryTotal.forEach(function(key, value) {
         arr2.push({ Title: value, amount: Number(key.toFixed(4)) });
       });
       this.arrayCountryAmount = arr2;

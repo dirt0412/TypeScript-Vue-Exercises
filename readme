@@ -4,3 +4,10 @@ add to tsconfig.json
 "lib": ["es5", "es6", "dom"] 
 (use Map etc)
 ---------------------------
+add
+declare module "*.json" {
+    const value: any;
+    export default value;
+}
+to file vue-shims.d.ts
+---------------------------
