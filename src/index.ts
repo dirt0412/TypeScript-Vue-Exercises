@@ -12,7 +12,7 @@ let v = new Vue({
         <calc2-component :name="name"  />
     </div>
     `,
-    data: { name: "World" },
+    data: { name: "Test" },
     components: {
         Calc1Component,
         Calc2Component

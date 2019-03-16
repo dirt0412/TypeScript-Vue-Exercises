@@ -1,7 +1,7 @@
 <!-- src/components/Calc1.vue -->
 <template>
     <div>
-        <div class="greeting">Exercises typescript - calc1</div>
+        <div class="greeting">{{name}}</div>
     <p> 
       <button @click="sumAmount">Sum Amount</button>
       <input placeholder="result" type="text" v-model="sumAmountTotal">
@@ -24,7 +24,6 @@
       </tr>
     </tbody>
   </table>
-
     </p>
     </div>
 </template>
@@ -34,14 +33,13 @@ import Vue from "vue";
 import { calc1Methods } from "../Calc/calc1";
 
 export default Vue.extend({
-  props: {
-    name: String
-  },
+  props: {},
   data() {
     return {
       sumAmountTotal: 0,
       mapAmountGroupByCountryTotal: new Map(),
-      arrayCountryAmount: [{}]
+      arrayCountryAmount: [{}],
+      name: "Exercises typescript - calc1"
     };
   },
   methods: {
@@ -64,7 +62,12 @@ export default Vue.extend({
   created() {},
   beforeMount() {},
   mounted() {
-    //console.log(this.arrayCountryAmount.length);
+    this.$root.$on("clickedSomething", () => {
+      //Using an Event Bus to communicate between any component
+      alert(
+        "hello from component Calc1 - Using an Event Bus to communicate between any component!"
+      );
+    });
   },
   beforeUpdate() {},
   updated() {},

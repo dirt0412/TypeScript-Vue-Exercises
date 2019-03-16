@@ -9,5 +9,8 @@ declare module "*.json" {
     const value: any;
     export default value;
 }
-to file vue-shims.d.ts
+to file vue-shims.d.ts, need to get dataColors from json file
+---------------------------
+https://flaviocopes.com/vue-components-communication/#using-an-event-bus-to-communicate-between-any-component
+https://alligator.io/vuejs/component-communication/
 ---------------------------
