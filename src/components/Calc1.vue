@@ -1,6 +1,6 @@
 <!-- src/components/Calc1.vue -->
 <template>
-    <div>
+    <div id="calc1">
         <div class="greeting">{{name}}</div>
     <p> 
       <button @click="sumAmount">Sum Amount</button>
@@ -25,6 +25,8 @@
     </tbody>
   </table>
     </p>
+    <h2 id="showAny" v-if="showAny">Event Bus to communicate between Calc1 component: {{showAnyCount}} </h2>
+    <p> Communication from parent component App by props: {{ newDate }} </p>
     </div>
 </template>
 
@@ -33,13 +35,15 @@ import Vue from "vue";
 import { calc1Methods } from "../Calc/calc1";
 
 export default Vue.extend({
-  props: {},
+  props: ["newDate"], // communication from parent component App by props to children component
   data() {
     return {
       sumAmountTotal: 0,
       mapAmountGroupByCountryTotal: new Map(),
       arrayCountryAmount: [{}],
-      name: "Exercises typescript - calc1"
+      name: "Calc1 component",
+      showAny: false,
+      showAnyCount: 0
     };
   },
   methods: {
@@ -67,6 +71,8 @@ export default Vue.extend({
       alert(
         "hello from component Calc1 - Using an Event Bus to communicate between any component!"
       );
+      this.showAny = true;
+      this.showAnyCount++;
     });
   },
   beforeUpdate() {},
@@ -79,5 +85,11 @@ export default Vue.extend({
 <style>
 .greeting {
   font-size: 20px;
+}
+#calc1 {
+  background-color: grey;
+}
+#showAny {
+  color: red;
 }
 </style>

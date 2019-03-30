@@ -1,4 +1,5 @@
 npm run build
+index.html
 ---------------------------
 add to tsconfig.json 
 "lib": ["es5", "es6", "dom"] 

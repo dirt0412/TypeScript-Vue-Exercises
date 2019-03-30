@@ -1,9 +1,10 @@
 <!-- src/components/Calc2.vue -->
 <template>
-    <div>
+    <div id="calc2">
         <div class="greeting">{{name}}</div>
         <button @click="calculateTableColors">Calculate table with colors</button>
-         <button @click="handleClick">handleClick</button>
+        <button @click="handleClick">Event Bus to communicate between Calc1 component</button>
+        <button @click="methodCalc2">Communication from child component by $emit to parent component App</button>
   <table>
     <thead>
       <tr>
@@ -36,7 +37,7 @@ export default Vue.extend({
     return {
       arrayColorsWithCells: [{ hex: "", cell: [0, 0] }],
       contentData: [...Array(0)].map(e => Array(0)),
-      name: "Exercises typescript - calc2"
+      name: "Calc2 component"
     };
   },
   methods: {
@@ -49,6 +50,10 @@ export default Vue.extend({
     handleClick: function() {
       //Using an Event Bus to communicate between any component
       this.$root.$emit("clickedSomething");
+    },
+    methodCalc2: function() {
+      //communication from child component Calc2 by $emit to parent component App
+      this.$emit("methodCalc2", "login");
     }
   },
   computed: {},
@@ -74,5 +79,8 @@ td {
 }
 .cell-width {
   width: 20px;
+}
+#calc2 {
+  background-color: blueviolet;
 }
 </style>
